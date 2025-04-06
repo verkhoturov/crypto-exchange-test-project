@@ -1,0 +1,23 @@
+{
+    "extends": [
+      "stylelint-config-css-modules",
+      "stylelint-config-property-sort-order-smacss"
+    ],
+    "plugins": [],
+    "rules": {
+      "at-rule-no-unknown": null,
+      "color-hex-length": "long",
+      "declaration-empty-line-before": null,
+      "selector-class-pattern": null,
+      "value-keyword-case": [
+        "lower",
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ],
+      "scss/at-rule-no-unknown": true,
+      "scss/no-global-function-names": null
+    }
+}

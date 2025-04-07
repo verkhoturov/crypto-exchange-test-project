@@ -10,6 +10,7 @@ interface CoinInputProps {
     onChangeAmount: (value: string) => void;
     selectedCoinId: string;
     onChangeCoinId: (value: string) => void;
+    isLoading?: boolean;
 }
 
 export const CoinInput = ({
@@ -20,6 +21,7 @@ export const CoinInput = ({
     onChangeAmount,
     selectedCoinId,
     onChangeCoinId,
+    isLoading,
 }: CoinInputProps) => {
     const selectItems =
         coinsList?.map((coin) => ({
@@ -32,7 +34,7 @@ export const CoinInput = ({
         <Flex>
             <Field
                 label={label}
-                value={amountValue}
+                value={isLoading ? 'Loading...' : amountValue}
                 onChange={(e) => onChangeAmount(e.target.value)}
             />
             <Select

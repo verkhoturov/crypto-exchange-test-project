@@ -21,13 +21,11 @@ export const Home = () => {
 
     React.useEffect(() => {
         const getCoins = async () => {
-            setLoading(true);
             const coins = await getCoinsData();
 
             if (coins.success) {
                 setCoinsList(coins.data);
             }
-            setLoading(false);
         };
 
         getCoins();
@@ -87,6 +85,7 @@ export const Home = () => {
                 selectedCoinId={toCoinId}
                 onChangeCoinId={setFromCoinId}
                 defaultCoinId={DEFAULT_TO_COIN_ID}
+                isLoading={isLoading}
             />
         </form>
     );

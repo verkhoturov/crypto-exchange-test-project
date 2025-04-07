@@ -1,8 +1,8 @@
 import React from 'react';
-import { Flex, Button } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { getCoinsData, Coin } from '@/entities/coins';
 import { getConversionData, Conversion } from '@/entities/conversion';
-import { Select, Field } from '@/shared/ui';
+import { CoinInput } from '@/widgets/CoinInput';
 
 const DEFAULT_FROM_COIN_ID = '1';
 const DEFAULT_TO_COIN_ID = '825'; // USDT
@@ -67,50 +67,27 @@ export const Home = () => {
 
     return (
         <form>
-            <Flex>
-                <Field
-                    label="You Send"
-                    value={fromAmount}
-                    onChange={(e) => setFromAmount(e.target.value)}
-                />
-                <Select
-                    onChange={(symbol) => setFromCoinId(symbol)}
-                    value={fromCoinId}
-                    items={
-                        coinsList?.map((coin) => ({
-                            value: String(coin.id),
-                            label: coin.symbol,
-                            desc: coin.name,
-                        })) || []
-                    }
-                    defaultValue={DEFAULT_FROM_COIN_ID}
-                    isDisabled={!coinsList}
-                />
-            </Flex>
+            <CoinInput
+                label="You Send"
+                coinsList={coinsList}
+                amountValue={fromAmount}
+                onChangeAmount={setFromAmount}
+                selectedCoinId={fromCoinId}
+                onChangeCoinId={setFromCoinId}
+                defaultCoinId={DEFAULT_FROM_COIN_ID}
+            />
 
             <Button onClick={reverseCoins}>{'->'}</Button>
 
-            <Flex>
-                <Field
-                    label="You Get"
-                    value={toAmount}
-                    onChange={(e) => setToAmount(e.target.value)}
-                    disabled={isLoading}
-                />
-                <Select
-                    onChange={(symbol) => setToCoinId(symbol)}
-                    value={toCoinId}
-                    items={
-                        coinsList?.map((coin) => ({
-                            value: String(coin.id),
-                            label: coin.symbol,
-                            desc: coin.name,
-                        })) || []
-                    }
-                    defaultValue={DEFAULT_TO_COIN_ID}
-                    isDisabled={!coinsList}
-                />
-            </Flex>
+            <CoinInput
+                label="You Get"
+                coinsList={coinsList}
+                amountValue={toAmount}
+                onChangeAmount={setToAmount}
+                selectedCoinId={toCoinId}
+                onChangeCoinId={setFromCoinId}
+                defaultCoinId={DEFAULT_TO_COIN_ID}
+            />
         </form>
     );
 };

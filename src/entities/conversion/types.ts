@@ -3,7 +3,7 @@ export interface Conversion {
     estimatedAmount: number;
 }
 
-export type ConversionParams =
+export type ConversionRequestParams =
     | { fromId: number; toId: number; fromAmount: number; toAmount?: never }
     | { fromId: number; toId: number; toAmount: number; fromAmount?: never };
 
@@ -13,6 +13,6 @@ export interface ResponseError {
     statusCode: number;
 }
 
-export type ConversionResult =
+export type ConversionResponseResult =
     | { success: true; data: Conversion }
     | { success: false; error: ResponseError };

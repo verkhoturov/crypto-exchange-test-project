@@ -1,8 +1,15 @@
-import { Conversion, ResponseError, ConversionResult, ConversionParams } from './types';
+import {
+    Conversion,
+    ResponseError,
+    ConversionResponseResult,
+    ConversionRequestParams,
+} from './types';
 
 const API = import.meta.env.VITE_API_URL;
 
-export const getConversionData = async (params: ConversionParams): Promise<ConversionResult> => {
+export const getConversionData = async (
+    params: ConversionRequestParams,
+): Promise<ConversionResponseResult> => {
     const { fromId, toId, fromAmount, toAmount } = params;
 
     const query = new URLSearchParams({

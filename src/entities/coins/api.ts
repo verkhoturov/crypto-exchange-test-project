@@ -1,8 +1,8 @@
-import { Coin, ResponseError, CoinsResult } from './types';
+import { Coin, ResponseError, CoinsResponseResult } from './types';
 
 const API = import.meta.env.VITE_API_URL;
 
-export const getCoinsData = async (): Promise<CoinsResult> => {
+export const getCoinsData = async (): Promise<CoinsResponseResult> => {
     try {
         const response = await fetch(`${API}/coins`);
         const data: Coin[] | ResponseError = await response.json();

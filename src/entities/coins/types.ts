@@ -10,6 +10,6 @@ export interface ResponseError {
     statusCode: number;
 }
 
-export type CoinsResult =
+export type CoinsResponseResult =
     | { success: true; data: Coin[] }
     | { success: false; error: ResponseError };

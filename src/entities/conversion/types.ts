@@ -4,8 +4,8 @@ export interface Conversion {
 }
 
 export type ConversionRequestParams =
-    | { fromId: number; toId: number; fromAmount: number; toAmount?: never }
-    | { fromId: number; toId: number; toAmount: number; fromAmount?: never };
+    | { fromId: string; toId: string; fromAmount: string; toAmount?: never }
+    | { fromId: string; toId: string; toAmount: string; fromAmount?: never };
 
 export interface ResponseError {
     error?: string;

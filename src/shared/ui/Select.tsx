@@ -13,6 +13,7 @@ interface SelectItem {
 
 interface SelectProps {
     onChange?: (value: string) => void;
+    value: string;
     items: SelectItem[];
     defaultValue: string;
     label?: string;
@@ -38,6 +39,7 @@ const SelectValue = () => {
 
 export const Select = ({
     onChange,
+    value,
     items,
     defaultValue,
     label,
@@ -52,6 +54,7 @@ export const Select = ({
 
     return (
         <ChakraSelect.Root
+            value={[value]}
             onValueChange={(e) => onChange?.(e.value[0])}
             collection={collection}
             defaultValue={[defaultValue]}

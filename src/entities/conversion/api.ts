@@ -13,14 +13,14 @@ export const getConversionData = async (
     const { fromId, toId, fromAmount, toAmount } = params;
 
     const query = new URLSearchParams({
-        from: fromId.toString(),
-        to: toId.toString(),
+        from: fromId,
+        to: toId,
         // в параметры запроса передаем или fromAmount, или toAmount, но никогда оба - иначе ошибка
         ...(fromAmount !== undefined && {
-            fromAmount: fromAmount.toString(),
+            fromAmount,
         }),
         ...(toAmount !== undefined && {
-            toAmount: toAmount.toString(),
+            toAmount,
         }),
     });
 

@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
-    "format:prettier": "prettier \"**/*.{ts,tsx,js,scss,css,html,md,mdx}\" --write",
-    "format:stylelint": "stylelint \"src/**/*.{scss,css}\" --fix",
-    "format": "npm run format:prettier && npm run format:stylelint"
+    "prettier:write": "prettier \"**/*.{ts,tsx,js,scss,css,html,md,mdx}\" --write",
+    "prettier:check": "prettier \"**/*.{ts,tsx,js,scss,css,html,md,mdx}\" --check",
+    "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "format": "npm run prettier:write && npm run stylelint:fix",
+    "lint": "npm run stylelint && prettier:check && eslint ."
   },
   "dependencies": {
+    "@iconify/react": "^5.2.1",
     "mobx-react-lite": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -31,6 +34,7 @@
     "stylelint": "^16.14.1",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",

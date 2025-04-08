@@ -3,7 +3,6 @@ import { Select, Field } from '@/shared/ui';
 import { Coin } from '../types';
 
 interface CoinInputProps {
-    label: string;
     defaultCoinId: string;
     coinsList?: Coin[];
     amountValue?: string;

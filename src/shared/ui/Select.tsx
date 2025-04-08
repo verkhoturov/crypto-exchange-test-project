@@ -3,7 +3,14 @@ import {
     Select as ChakraSelect,
     createListCollection,
     useSelectContext,
+    Text,
+    Box,
+    Input,
+    InputGroup,
+    Center,
 } from '@chakra-ui/react';
+import { LuSearch } from 'react-icons/lu';
+import { useMemo, useState } from 'react';
 
 interface SelectItem {
     value: string;
@@ -45,14 +52,34 @@ export const Select = ({
     variant = 'subtle',
     size = 'md',
 }: SelectProps) => {
-    const collection = createListCollection({
-        items,
-    });
+    const [filterText, setFilterText] = useState('');
+
+    const filteredItems = useMemo(() => {
+        return items.filter(
+            (item) =>
+                item.label.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.desc?.toLowerCase().includes(filterText.toLowerCase()),
+        );
+    }, [items, filterText]);
+
+    const collection = createListCollection({ items: filteredItems });
+
+    const handleValueChange = (e: { value: string[] }) => {
+        onChange?.(e.value[0]);
+        setFilterText('');
+    };
+
+    const handleOpenChange = (isOpen: boolean) => {
+        if (!isOpen) {
+            setFilterText('');
+        }
+    };
 
     return (
         <ChakraSelect.Root
             value={[value]}
-            onValueChange={(e) => onChange?.(e.value[0])}
+            onValueChange={handleValueChange}
+            onOpenChange={(details) => handleOpenChange(details.open)}
             collection={collection}
             defaultValue={[defaultValue]}
             width={width}
@@ -74,21 +101,50 @@ export const Select = ({
 
             <Portal>
                 <ChakraSelect.Positioner>
-                    <ChakraSelect.Content>
-                        <ChakraSelect.ItemGroup>test</ChakraSelect.ItemGroup>
+                    <ChakraSelect.Content paddingTop={'60px'}>
+                        <ChakraSelect.ItemGroup
+                            height={'48px'}
+                            backgroundColor={'white'}
+                            position={'absolute'}
+                            top={0}
+                            left={0}
+                            right={0}
+                            zIndex={1}
+                        >
+                            <Box>
+                                <InputGroup startElement={<LuSearch />} padding={'4px 8px'}>
+                                    <Input
+                                        placeholder="Type a currency"
+                                        value={filterText}
+                                        onChange={(e) => setFilterText(e.target.value)}
+                                    />
+                                </InputGroup>
+                            </Box>
+                        </ChakraSelect.ItemGroup>
+
                         <ChakraSelect.ItemGroup>
-                            {collection.items.map((item, i) => (
-                                <ChakraSelect.Item
-                                    item={item}
-                                    key={`${item.value}-${item.label}-${i}`}
-                                >
-                                    <div>
-                                        <p>{item.label}</p>
-                                        {item.desc && <span>{item.desc}</span>}{' '}
-                                    </div>
-                                    <ChakraSelect.ItemIndicator />
-                                </ChakraSelect.Item>
-                            ))}
+                            {collection.items.length > 0 ? (
+                                collection.items.map((item, i) => (
+                                    <ChakraSelect.Item
+                                        item={item}
+                                        key={`${item.value}-${item.label}-${i}`}
+                                    >
+                                        <div>
+                                            <Text>{item.label}</Text>
+                                            {item.desc && (
+                                                <Text as="span" color={'gray.400'}>
+                                                    {item.desc}
+                                                </Text>
+                                            )}
+                                        </div>
+                                        <ChakraSelect.ItemIndicator />
+                                    </ChakraSelect.Item>
+                                ))
+                            ) : (
+                                <Center padding={4} color="gray.500">
+                                    No results found
+                                </Center>
+                            )}
                         </ChakraSelect.ItemGroup>
                     </ChakraSelect.Content>
                 </ChakraSelect.Positioner>

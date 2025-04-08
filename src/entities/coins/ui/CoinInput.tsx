@@ -1,6 +1,6 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Spinner } from '@chakra-ui/react';
 import { Select, Field } from '@/shared/ui';
-import { Coin } from '@/entities/coins';
+import { Coin } from '../types';
 
 interface CoinInputProps {
     label: string;
@@ -14,7 +14,6 @@ interface CoinInputProps {
 }
 
 export const CoinInput = ({
-    label,
     defaultCoinId,
     coinsList,
     amountValue,
@@ -31,11 +30,20 @@ export const CoinInput = ({
         })) || [];
 
     return (
-        <Flex>
+        <Flex gap={'6px'} position={'relative'}>
+            {isLoading && (
+                <Spinner
+                    size="sm"
+                    color="blue.solid"
+                    position={'absolute'}
+                    left={'12px'}
+                    bottom={'12px'}
+                />
+            )}
             <Field
-                label={label}
-                value={isLoading ? 'Loading...' : amountValue}
+                value={isLoading ? '' : amountValue}
                 onChange={(e) => onChangeAmount(e.target.value)}
+                inputMode="decimal"
             />
             <Select
                 onChange={(symbol) => onChangeCoinId(symbol)}
@@ -43,6 +51,7 @@ export const CoinInput = ({
                 items={selectItems}
                 defaultValue={defaultCoinId}
                 isDisabled={!coinsList}
+                width="280px"
             />
         </Flex>
     );

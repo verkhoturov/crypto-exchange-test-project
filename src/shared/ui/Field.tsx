@@ -7,7 +7,6 @@ interface FieldProps extends InputProps {
 export const Field = ({ label, ...props }: FieldProps) => {
     return (
         <ChakraField.Root>
-            {label && <ChakraField.Label>{label}</ChakraField.Label>}
             <Input {...props} />
         </ChakraField.Root>
     );

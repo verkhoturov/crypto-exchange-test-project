@@ -4,6 +4,8 @@ import { systemTheme } from '@/shared/ui';
 
 import { Home } from '@/pages/Home';
 
+import './global.css';
+
 const App = () => {
     return (
         <ChakraProvider value={systemTheme}>

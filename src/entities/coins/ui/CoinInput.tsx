@@ -40,6 +40,7 @@ export const CoinInput = ({
                 />
             )}
             <Field
+                type="number"
                 value={isLoading ? '' : amountValue}
                 onChange={(e) => onChangeAmount(e.target.value)}
                 inputMode="decimal"

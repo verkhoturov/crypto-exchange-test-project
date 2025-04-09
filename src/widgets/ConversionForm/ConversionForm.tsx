@@ -18,7 +18,8 @@ export const ConversionForm = observer(() => {
         toAmount,
         fromCoinId,
         toCoinId,
-        isLoading,
+        isLoadingFromAmount,
+        isLoadingToAmount,
         setFromAmount,
         setToAmount,
         setFromCoinId,
@@ -35,6 +36,7 @@ export const ConversionForm = observer(() => {
                 selectedCoinId={fromCoinId}
                 onChangeCoinId={setFromCoinId}
                 defaultCoinId={fromCoinId}
+                isLoading={isLoadingFromAmount}
             />
 
             <div>
@@ -50,7 +52,7 @@ export const ConversionForm = observer(() => {
                 selectedCoinId={toCoinId}
                 onChangeCoinId={setToCoinId}
                 defaultCoinId={toCoinId}
-                isLoading={isLoading}
+                isLoading={isLoadingToAmount}
             />
         </Flex>
     );

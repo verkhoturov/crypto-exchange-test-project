@@ -1,6 +1,7 @@
 # crypto-exchange-test-project
 
 [Задание](https://docs.google.com/document/d/1DMNmvv8iBAP_8KrJkRiS3pKIZE4kRZahbdlDapeAusQ/edit?tab=t.0)
+
 Демо можно посмотреть [здесь](https://crypto-exchange-test-project.vercel.app/)
 
 ## Стэк

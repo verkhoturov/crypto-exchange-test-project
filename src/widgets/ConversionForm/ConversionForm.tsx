@@ -95,7 +95,7 @@ export const ConversionForm = observer(() => {
                     </Text>
                 </div>
 
-                <Button onClick={reverseCoins}>
+                <Button onClick={reverseCoins} aria-label="reverse coins">
                     <LuArrowDownUp />
                 </Button>
             </Flex>

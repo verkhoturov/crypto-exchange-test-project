@@ -28,6 +28,7 @@ interface SelectProps {
     variant?: 'outline' | 'subtle';
     size?: 'xs' | 'sm' | 'md' | 'lg';
     width?: string;
+    ariaLabel?: string;
 }
 
 const SelectValue = () => {
@@ -51,6 +52,7 @@ export const Select = ({
     width = '320px',
     variant = 'subtle',
     size = 'md',
+    ariaLabel,
 }: SelectProps) => {
     const [filterText, setFilterText] = useState('');
 
@@ -86,6 +88,7 @@ export const Select = ({
             disabled={isDisabled}
             variant={variant}
             size={size}
+            aria-label={ariaLabel}
         >
             {label && <ChakraSelect.Label>{label}</ChakraSelect.Label>}
 

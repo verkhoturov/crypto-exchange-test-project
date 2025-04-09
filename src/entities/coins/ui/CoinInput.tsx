@@ -45,6 +45,7 @@ export const CoinInput = ({
                 onChange={(e) => onChangeAmount(e.target.value)}
                 inputMode="decimal"
                 min="0"
+                aria-label="amount"
             />
             <Select
                 onChange={(symbol) => onChangeCoinId(symbol)}
@@ -53,6 +54,7 @@ export const CoinInput = ({
                 defaultValue={defaultCoinId}
                 isDisabled={!coinsList}
                 width="280px"
+                ariaLabel="select coin"
             />
         </Flex>
     );

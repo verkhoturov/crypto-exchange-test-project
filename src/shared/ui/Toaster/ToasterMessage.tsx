@@ -1,18 +1,7 @@
-import {
-    Toaster as ChakraToaster,
-    Portal,
-    Spinner,
-    Stack,
-    Toast,
-    createToaster,
-} from '@chakra-ui/react';
+import { Toaster as ChakraToaster, Portal, Spinner, Stack, Toast } from '@chakra-ui/react';
+import { toaster } from './toaster';
 
-export const toaster = createToaster({
-    placement: 'bottom-end',
-    pauseOnPageIdle: true,
-});
-
-export const Toaster = () => {
+export const ToasterMessage = () => {
     return (
         <Portal>
             <ChakraToaster toaster={toaster} insetInline={{ mdDown: '4' }}>

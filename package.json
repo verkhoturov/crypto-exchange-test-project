@@ -12,7 +12,7 @@
     "stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "stylelint": "stylelint \"src/**/*.{scss,css}\"",
     "format": "npm run prettier:write && npm run stylelint:fix",
-    "lint": "npm run stylelint && prettier:check && eslint ."
+    "lint": "npm run stylelint && npm run prettier:check && eslint ."
   },
   "dependencies": {
     "@chakra-ui/react": "^3.15.0",

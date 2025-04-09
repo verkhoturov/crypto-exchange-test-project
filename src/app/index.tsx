@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ChakraProvider } from '@chakra-ui/react';
-import { systemTheme, Toaster } from '@/shared/ui';
+import { systemTheme, ToasterMessage } from '@/shared/ui';
 
 import { Home } from '@/pages/Home';
 
@@ -15,7 +15,7 @@ const App = () => {
                 </Routes>
             </BrowserRouter>
 
-            <Toaster />
+            <ToasterMessage />
         </ChakraProvider>
     );
 };

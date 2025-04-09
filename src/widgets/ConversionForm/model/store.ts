@@ -37,7 +37,7 @@ export class ConversionStore {
         makeAutoObservable(this);
 
         this.fetchConversionDebounced = debounce(() => {
-            void this.fetchConversion();  // void - чтобы не ждать промис
+            void this.fetchConversion(); // void - чтобы не ждать промис
         }, 300);
     }
 

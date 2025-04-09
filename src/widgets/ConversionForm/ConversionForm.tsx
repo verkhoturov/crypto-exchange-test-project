@@ -5,8 +5,8 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import { LuArrowDownUp } from 'react-icons/lu';
 import { CoinInput } from '@/entities/coins';
 import { conversionStore } from './model/store';
-import { FormLoader } from "./ui/FormLoader";
- 
+import { FormLoader } from './ui/FormLoader';
+
 export const ConversionForm = observer(() => {
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,6 +21,7 @@ export const ConversionForm = observer(() => {
 
         conversionStore.fetchCoins();
         conversionStore.fetchConversion();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
@@ -30,6 +31,7 @@ export const ConversionForm = observer(() => {
         updated.set('amount', conversionStore.fromAmount);
 
         setSearchParams(updated);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [conversionStore.fromCoinId, conversionStore.toCoinId, conversionStore.fromAmount]);
 
     const {
@@ -50,9 +52,7 @@ export const ConversionForm = observer(() => {
     } = conversionStore;
 
     if (isCoinsListLoading) {
-        return (
-            <FormLoader />
-        );
+        return <FormLoader />;
     }
 
     return (

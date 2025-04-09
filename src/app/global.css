@@ -1,3 +1,9 @@
+body {
+    background-image:
+        repeating-linear-gradient(0deg, #eeeeee, #eeeeee 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, #eeeeee, #eeeeee 1px, transparent 1px, transparent 20px);
+}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
     appearance: none;

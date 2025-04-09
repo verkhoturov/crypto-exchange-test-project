@@ -34,7 +34,7 @@ const SelectValue = () => {
     const select = useSelectContext();
     const items = select.selectedItems as SelectItem[];
 
-    if (items?.length > 0) {
+    if (items?.length > 0 && items[0]) {
         const { label } = items[0];
         return <>{label}</>;
     }

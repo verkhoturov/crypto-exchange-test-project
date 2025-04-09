@@ -7,7 +7,7 @@ import {
     createToaster,
 } from '@chakra-ui/react';
 
-const toaster = createToaster({
+export const toaster = createToaster({
     placement: 'bottom-end',
     pauseOnPageIdle: true,
 });

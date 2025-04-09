@@ -11,9 +11,6 @@ const customConfig = defineConfig({
                 gray: {
                     400: { value: '#667085' },
                 },
-                black: {
-                    900: { value: '#344054' },
-                },
             },
             fontWeights: {
                 normal: { value: '400' },
@@ -29,7 +26,6 @@ const customConfig = defineConfig({
             fontFamily: '{fonts.body}',
             fontWeight: '{fontWeights.normal}',
             fontSize: '{fontSizes.normal}',
-            color: '{colors.black.900}',
         },
         'h1,h2,h3,h4,h5,h6': {
             color: '{colors.heading}',

@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import debounce from 'lodash/debounce';
+import { toaster } from '@/shared/ui';
 import { Coin, getCoinsData } from '@/entities/coins';
 import { Conversion, getConversionData } from '@/entities/conversion';
 
@@ -23,6 +24,8 @@ export class ConversionStore {
     toAmount = '';
 
     conversion?: Conversion;
+
+    isCoinsListLoading = false;
     isLoadingFromAmount = false;
     isLoadingToAmount = false;
 
@@ -34,17 +37,27 @@ export class ConversionStore {
         makeAutoObservable(this);
 
         this.fetchConversionDebounced = debounce(() => {
-            void this.fetchConversion(); // void - чтобы не ждать промис
+            void this.fetchConversion();  // void - чтобы не ждать промис
         }, 300);
     }
 
     async fetchCoins() {
+        this.isCoinsListLoading = true;
         const res = await getCoinsData();
-        if (res.success) {
-            runInAction(() => {
+
+        runInAction(() => {
+            this.isCoinsListLoading = false;
+
+            if (res.success) {
                 this.coinsList = res.data;
-            });
-        }
+            } else {
+                toaster.create({
+                    title: 'Failed to load coins',
+                    description: res.error?.message ?? 'Unknown error while fetching coin list',
+                    closable: true,
+                });
+            }
+        });
     }
 
     async fetchConversion() {
@@ -78,6 +91,12 @@ export class ConversionStore {
                 } else {
                     this.fromAmount = String(res.data.estimatedAmount);
                 }
+            } else {
+                toaster.create({
+                    title: 'Conversion error',
+                    description: res.error?.message ?? 'Failed to fetch conversion rate',
+                    closable: true,
+                });
             }
 
             if (this.lastChangedAmount === 'from') {

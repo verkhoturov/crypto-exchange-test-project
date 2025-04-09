@@ -44,6 +44,7 @@ export const CoinInput = ({
                 value={isLoading ? '' : amountValue}
                 onChange={(e) => onChangeAmount(e.target.value)}
                 inputMode="decimal"
+                min="0"
             />
             <Select
                 onChange={(symbol) => onChangeCoinId(symbol)}

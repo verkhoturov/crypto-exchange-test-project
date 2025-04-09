@@ -17,7 +17,10 @@ export const ConversionForm = observer(() => {
 
         if (from) conversionStore.setFromCoinId(from);
         if (to) conversionStore.setToCoinId(to);
-        if (amount) conversionStore.setFromAmount(amount);
+        if (amount) {
+            const formattedAmount = String(Math.abs(Number(amount))); // проверяем на отрицательное значение
+            conversionStore.setFromAmount(formattedAmount);
+        }
 
         conversionStore.fetchCoins();
         conversionStore.fetchConversion();
@@ -26,9 +29,11 @@ export const ConversionForm = observer(() => {
 
     React.useEffect(() => {
         const updated = new URLSearchParams(searchParams);
+        const amount = Math.abs(Number(conversionStore.fromAmount)); // проверяем на отрицательное значение
+
         updated.set('from', conversionStore.fromCoinId);
         updated.set('to', conversionStore.toCoinId);
-        updated.set('amount', conversionStore.fromAmount);
+        updated.set('amount', String(amount));
 
         setSearchParams(updated);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,12 +60,22 @@ export const ConversionForm = observer(() => {
         return <FormLoader />;
     }
 
+    const handleFromAmountChange = (value: string) => {
+        if (value.startsWith('-')) return;
+        setFromAmount(value);
+    };
+
+    const handleToAmountChange = (value: string) => {
+        if (value.startsWith('-')) return;
+        setToAmount(value);
+    };
+
     return (
         <Flex as="form" width="100%" flexDirection="column" gap="12px">
             <CoinInput
                 coinsList={coinsList}
                 amountValue={fromAmount}
-                onChangeAmount={setFromAmount}
+                onChangeAmount={handleFromAmountChange}
                 selectedCoinId={fromCoinId}
                 onChangeCoinId={setFromCoinId}
                 defaultCoinId={fromCoinId}
@@ -88,7 +103,7 @@ export const ConversionForm = observer(() => {
             <CoinInput
                 coinsList={coinsList}
                 amountValue={toAmount}
-                onChangeAmount={setToAmount}
+                onChangeAmount={handleToAmountChange}
                 selectedCoinId={toCoinId}
                 onChangeCoinId={setToCoinId}
                 defaultCoinId={toCoinId}

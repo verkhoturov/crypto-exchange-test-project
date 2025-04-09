@@ -88,12 +88,11 @@ export const Select = ({
             disabled={isDisabled}
             variant={variant}
             size={size}
-            aria-label={ariaLabel}
         >
             {label && <ChakraSelect.Label>{label}</ChakraSelect.Label>}
 
             <ChakraSelect.Control>
-                <ChakraSelect.Trigger>
+                <ChakraSelect.Trigger aria-label={ariaLabel}>
                     <SelectValue />
                 </ChakraSelect.Trigger>
 

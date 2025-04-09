@@ -1,3 +1,11 @@
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/roboto-semi-bold.woff2') format('woff2');
+}
+
 body {
     background-image:
         repeating-linear-gradient(0deg, #eeeeee, #eeeeee 1px, transparent 1px, transparent 20px),
